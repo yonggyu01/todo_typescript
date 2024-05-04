@@ -1,0 +1,22 @@
+{
+  "name": "todo_typescript",
+  "version": "1.0.0",
+  "description": "todolist",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yonggyu01/todo_typescript.git"
+  },
+  "keywords": [
+    "todo"
+  ],
+  "author": "yonggyu01",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yonggyu01/todo_typescript/issues"
+  },
+  "homepage": "https://github.com/yonggyu01/todo_typescript#readme"
+}
