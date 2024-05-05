@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script defer src="index.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <div>
+            <h1>오늘의 할일</h1>
+        </div>
+        <form method="get" action="" onsubmit="return false">
+            <fieldset>
+                <legend>
+                    오늘의 할일입니다.
+                </legend>
+                <input type="text" id="todo" name="todo" placeholder="할일을 적어주세요">
+                <button class="pushbtn">
+                    +
+                </button>
+            </fieldset>
+        </form>
+        <ul class="todotarget">
+            <li>
+                <input type="checkbox" class="check"> 
+                <p class="notdone">할일</p>
+                <a href="#none" class="del"> 삭제 </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
