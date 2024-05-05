@@ -100,13 +100,13 @@ class Todolist {
         this.getTodo();
     }
     updateTodo(dataset) {
-        console.log(dataset);
+        // console.log(dataset,this.list)
         // let newlist = []
         this.list.forEach((item, index) => {
-            // console.log(item.id,'id',dataset,'dataset')
+            // console.log(item.id,item.isDone,'id',dataset,'dataset')
             if (String(item.id) == dataset) {
-                this.list[item.id].isDone = !item.isDone;
-                console.log(this.list[item.id], '바뀌었니?');
+                this.list[index].isDone = !item.isDone;
+                // console.log(this.list[item.id], '바뀌었니?')
             }
         });
         //    this.list = newlist

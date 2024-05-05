@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./dist/css/index.css">
     <script defer src="index.js"></script>
     <title>Document</title>
 </head>
@@ -14,13 +14,15 @@
         </div>
         <form method="get" action="" onsubmit="return false">
             <fieldset>
-                <legend>
+                <legend class="none">
                     오늘의 할일입니다.
                 </legend>
-                <input type="text" id="todo" name="todo" placeholder="할일을 적어주세요">
-                <button class="pushbtn">
-                    +
-                </button>
+                <div class="inputwrap">
+                    <input type="text" id="todo" name="todo" placeholder="할일을 적어주세요">
+                    <button class="pushbtn">
+                        +
+                    </button>
+                </div>
             </fieldset>
         </form>
         <ul class="todotarget">

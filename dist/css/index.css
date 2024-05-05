@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  list-style: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.none {
+  position: absolute;
+  left: -9999999px;
+}
+
+.wrap {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5%;
+  box-sizing: border-box;
+  background-color: rgb(248, 243, 236);
+}
+.wrap h1 {
+  margin-bottom: 20px;
+}
+.wrap .inputwrap {
+  display: flex;
+  height: 40px;
+  gap: 15px;
+}
+.wrap .inputwrap #todo {
+  width: 100%;
+  padding-left: 10px;
+  font-size: 1.4em;
+}
+.wrap .inputwrap .pushbtn {
+  width: 35px;
+}
+.wrap form > fieldset {
+  border: none;
+  margin-bottom: 20px;
+}
+.wrap form > fieldset legend {
+  margin-bottom: 20px;
+}
+.wrap .todotarget {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.wrap .todotarget li {
+  display: flex;
+  box-sizing: border-box;
+  padding-left: 10px;
+  gap: 10px;
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+}
+.wrap .todotarget li p {
+  font-size: 1.4em;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+.wrap .todotarget li p.done {
+  text-decoration: line-through;
+  color: red;
+}
+.wrap .todotarget li p.notdone {
+  text-decoration: none;
+}
+.wrap .todotarget li a {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  font-size: 1.4em;
+}/*# sourceMappingURL=index.css.map */
