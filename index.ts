@@ -43,29 +43,27 @@
                 Input.type= 'checkbox'
                 Input.className='check'
                 Input.dataset.update=`${el.id}`
-                el.isDone? Input.checked=true : Input.checked= false
+                if(el.isDone){
+                    Input.checked=true
+                    P.className="done"
+                }else{
+                    Input.checked= false
+                    P.className="notdone"
+                }
+                // el.isDone? Input.checked=true : Input.checked= false
+                // el.isDone? P.className="done" : P.className="notdone"
                 A.href='#none'
                 P.innerHTML = el.content
                 A.className="del"
                 A.dataset.delid = `${el.id}`
                 A.innerText="삭제"
 
-                el.isDone? P.className="done" : P.className="notdone"
                 Li.appendChild(Input)
                 Li.appendChild(P)
                 Li.appendChild(A)
                 // 타겟 ul에 집어넣기
                 this.target.append(Li)
-                document.querySelectorAll('.del').forEach((item:HTMLElement,idx)=>{
-                    item.addEventListener('click',()=>{
-                        this.delTodo(item.dataset.delid)
-                    })
-                })
-                document.querySelectorAll('.check').forEach((item:HTMLElement)=>{
-                    item.addEventListener('click',()=>{
-                        this.updateTodo(item.dataset.update)
-                    })
-                })
+              
                 // this.target.addEventListener('click',(e:MouseEvent)=>{
                 //     console.log(e)
                 //     switch(e.target.className){
@@ -80,7 +78,16 @@
                 //     }
                 // }) 
             })
-            
+            document.querySelectorAll('.del').forEach((item:HTMLElement,idx)=>{
+                item.addEventListener('click',()=>{
+                    this.delTodo(item.dataset.delid)
+                })
+            })
+            document.querySelectorAll('.check').forEach((item:HTMLElement)=>{
+                item.addEventListener('click',()=>{
+                    this.updateTodo(item.dataset.update)
+                })
+            })
         } 
         addTodo():void {  
             console.log('addtodo실행',this.input.value)
@@ -111,19 +118,18 @@
             this.getTodo()
         }
         updateTodo(dataset : string):void {
-            // console.log(dataset)
-            let newlist = []
+            console.log(dataset)
+            // let newlist = []
 
-            newlist=this.list.map((item,index)=>{
-                console.log(item.id,'id',dataset,'dataset')
+            this.list.forEach((item,index)=>{
+                // console.log(item.id,'id',dataset,'dataset')
             if(String(item.id) == dataset){
-                return {...item, isDone : !item.isDone }
-            }else{
-                return item
+                this.list[item.id].isDone = !item.isDone
+                console.log(this.list[item.id], '바뀌었니?')
             }
             
            })
-           this.list = newlist
+        //    this.list = newlist
             this.getTodo()
 
         }
