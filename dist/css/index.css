@@ -41,7 +41,7 @@ a {
   gap: 15px;
 }
 .wrap .inputwrap #todo {
-  width: 100%;
+  width: calc(100% - 50px);
   padding-left: 10px;
   font-size: 1.4em;
 }
@@ -68,12 +68,18 @@ a {
   background-color: white;
   border: 1px solid black;
   position: relative;
+  padding-right: 70px;
 }
 .wrap .todotarget li p {
   font-size: 1.4em;
   height: 40px;
   display: flex;
   align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-right: 50px;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
 }
 .wrap .todotarget li p.done {
   text-decoration: line-through;
