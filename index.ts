@@ -1,3 +1,4 @@
+
     type List = {
         isDone : boolean,
         content : string,
@@ -9,6 +10,19 @@
         delTodo(dataset:string) : void
         updateTodo (idx : string) : void
     }
+
+/**
+ * @param1 target : ul태그
+ * @param2 태그들의 id값 숫자 0을 넣으세요
+ * @param3 list[] : isDone: boolean,content: 인풋태그에 입력한 텍스트, id: param2의 값
+ * @param4 input : input태그 ( 메모 입력하는 태그지정)
+ * @param5 pushbtn : input태그 옆에 + 버튼
+ * @method getTodo : list의 값을 param1에 append해주는 메서드  화면 업데이트와 이벤트 등록도 같이 해줌
+ * @method addTodo : param3 list 배열에 값을 넣어주는 메서드
+ * @method deltodo : param3 list배열에 값을 지워주는 메서드
+ * @method updateTodo : param3 list배열에 본인의 값을 수정하는 메서드
+ */
+    
     class Todolist implements Todomaker {
         private target : Element
         private index : number
@@ -21,7 +35,7 @@
             this.list = list
             this.input = input
         }
-        indexplus(){
+        private indexplus(){
             ++this.index
         }
         getTodo(): void {
