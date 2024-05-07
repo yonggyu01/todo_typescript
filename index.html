@@ -12,26 +12,48 @@
         <div>
             <h1>오늘의 할일</h1>
         </div>
-        <form method="get" action="" onsubmit="return false">
-            <fieldset>
-                <legend class="none">
-                    오늘의 할일입니다.
-                </legend>
-                <div class="inputwrap">
-                    <input type="text" id="todo" name="todo" placeholder="할일을 적어주세요">
-                    <button class="pushbtn">
-                        +
-                    </button>
-                </div>
-            </fieldset>
-        </form>
-        <ul class="todotarget">
-            <li>
-                <input type="checkbox" class="check"> 
-                <p class="notdone">할일</p>
-                <a href="#none" class="del"> 삭제 </a>
-            </li>
-        </ul>
+        <details>
+            <summary>
+                오늘의 할일
+            </summary>
+            <form method="get" action="" onsubmit="return false">
+                <fieldset>
+                    <legend class="none">
+                        오늘의 할일입니다.
+                    </legend>
+                    <div class="inputwrap">
+                        <input type="text" id="todo" name="todo" placeholder="할일을 적어주세요">
+                        <button class="pushbtn">
+                            +
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+                <ul class="todotarget">
+                </ul>
+        </details>
+ 
+        <details>
+            <summary>
+                쇼핑 리스트  <button class="alldel"> 리스트삭제</button>
+            </summary>
+            <form method="get" action="" onsubmit="return false">
+                <fieldset>
+                    <legend class="none">
+                        오늘의 쇼핑리스트 입니다.
+                    </legend>
+                    <div class="inputwrap">
+                        <input type="text" id="cart" name="cart" placeholder="구매목록을 적어주세요">
+                        <button class="cartbtn">
+                            +
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+                <ul class="carttarget">
+                </ul>
+        </details>
+ 
     </div>
 </body>
 </html>

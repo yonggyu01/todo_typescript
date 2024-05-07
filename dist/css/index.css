@@ -45,7 +45,15 @@ a {
   padding-left: 10px;
   font-size: 1.4em;
 }
+.wrap .inputwrap #cart {
+  width: calc(100% - 50px);
+  padding-left: 10px;
+  font-size: 1.4em;
+}
 .wrap .inputwrap .pushbtn {
+  width: 35px;
+}
+.wrap .inputwrap .cartbtn {
   width: 35px;
 }
 .wrap form > fieldset {
@@ -55,12 +63,13 @@ a {
 .wrap form > fieldset legend {
   margin-bottom: 20px;
 }
-.wrap .todotarget {
+.wrap .todotarget, .wrap .carttarget {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  margin-bottom: 25px;
 }
-.wrap .todotarget li {
+.wrap .todotarget li, .wrap .carttarget li {
   display: flex;
   box-sizing: border-box;
   padding-left: 10px;
@@ -70,7 +79,7 @@ a {
   position: relative;
   padding-right: 70px;
 }
-.wrap .todotarget li p {
+.wrap .todotarget li p, .wrap .carttarget li p {
   font-size: 1.4em;
   height: 40px;
   display: flex;
@@ -81,16 +90,31 @@ a {
   text-overflow: ellipsis;
   box-sizing: border-box;
 }
-.wrap .todotarget li p.done {
+.wrap .todotarget li p.done, .wrap .todotarget li p.donecart, .wrap .carttarget li p.done, .wrap .carttarget li p.donecart {
   text-decoration: line-through;
   color: red;
 }
-.wrap .todotarget li p.notdone {
+.wrap .todotarget li p.notdone, .wrap .todotarget li p.notdonecart, .wrap .carttarget li p.notdone, .wrap .carttarget li p.notdonecart {
   text-decoration: none;
 }
-.wrap .todotarget li a {
+.wrap .todotarget li a, .wrap .carttarget li a {
   position: absolute;
   right: 15px;
   top: 5px;
   font-size: 1.4em;
+}
+.wrap .todotarget li a:not(.del), .wrap .carttarget li a:not(.del) {
+  right: 75px;
+}
+
+details summary {
+  margin-bottom: 15px;
+  position: relative;
+}
+details summary .alldel {
+  position: absolute;
+  right: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
 }/*# sourceMappingURL=index.css.map */

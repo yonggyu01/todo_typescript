@@ -16,7 +16,54 @@ $fontsize : 1.4em;
     position: absolute;
     left:-9999999px
 }
+@mixin detail{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 
+    li{
+        display: flex;
+        box-sizing: border-box;
+        padding-left: 10px;
+        gap:10px;
+        background-color: white;
+        border: 1px solid black;
+        position: relative;
+        padding-right: 70px;
+        p{ font-size: $fontsize;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            padding-right: 50px;
+            text-overflow: ellipsis;
+            box-sizing: border-box;
+            &.done,&.donecart{
+                text-decoration: line-through;
+                color : red;
+            }
+            &.notdone,&.notdonecart{
+                text-decoration: none;
+            }
+            
+        }
+
+        a{
+            
+                position: absolute;
+                right : 15px;
+                top:5px;
+                font-size: $fontsize;
+                &:not(.del){
+                    right:75px;
+                }
+                
+           
+        }
+        // margin-bottom: 15px;
+    }
+}
 .wrap{
     width: 100%;
     height: 100vh;
@@ -39,7 +86,15 @@ $fontsize : 1.4em;
             font-size: $fontsize;
     
         }
+        #cart{
+            width: calc(100% - 50px);
+            padding-left: 10px;
+            font-size: $fontsize;
+        }
         .pushbtn{
+            width: 35px;
+        }
+        .cartbtn{
             width: 35px;
         }
     }
@@ -50,44 +105,26 @@ $fontsize : 1.4em;
         }
         margin-bottom: 20px;
     }
-    .todotarget{
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
+    .todotarget,.carttarget{
+        // background-color: rgb(248, 222, 189);
+        // box-shadow:1px 1px 10px 0px black;
 
-        li{
-            display: flex;
-            box-sizing: border-box;
-            padding-left: 10px;
-            gap:10px;
-            background-color: white;
-            border: 1px solid black;
-            position: relative;
-            padding-right: 70px;
-            p{ font-size: $fontsize;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                white-space: nowrap;
-                overflow: hidden;
-                padding-right: 50px;
-                text-overflow: ellipsis;
-                box-sizing: border-box;
-                &.done{
-                    text-decoration: line-through;
-                    color : red;
-                }
-                &.notdone{
-                    text-decoration: none;
-                }
-            }
-
-            a{
-                position: absolute;
-                right : 15px;
-                top:5px;
-                font-size: $fontsize
-            }
-        }
+        // padding:5px 0; 
+      @include detail;
+      margin-bottom:25px;
     }
+}
+details{
+   
+ summary{
+    margin-bottom: 15px;
+    position: relative;
+    .alldel { 
+        position: absolute;
+        right : 10px;
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+    }
+ }
 }

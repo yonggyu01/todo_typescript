@@ -7,8 +7,11 @@
     interface Todomaker {
         getTodo() : void
         addTodo() : void
-        delTodo(dataset:string) : void
+        delTodo(dataset:string,action?:string) : void
         updateTodo (idx : string) : void
+        elementmaker() :void
+        eventreset() :void
+        eventinit() : void
     }
 
 /**
@@ -24,10 +27,10 @@
  */
     
     class Todolist implements Todomaker {
-        private target : Element
-        private index : number
-        private list : List[]
-        private input : HTMLInputElement
+        protected target : Element
+        protected index : number
+        protected list : List[]
+        protected input : HTMLInputElement
         public pushbtn : Element
         constructor(target : Element, index : number, list : List[], input:HTMLInputElement,pushbtn : Element){
             this.target = target
@@ -35,73 +38,15 @@
             this.list = list
             this.input = input
         }
-        private indexplus(){
+        protected indexplus(){
             ++this.index
         }
         getTodo(): void {
-            // 이벤트 초기화  -> 개선방향 ul에 이벤트를 추가해서 클래스 del인경우 동작하도록 로직 변경하여 메모리 낭비 최적화 가능할것으로 생각된다.
-            document.querySelectorAll('.del').forEach((item,idx)=>{
-                item.removeEventListener('click',()=>{})
-            }) 
-            document.querySelectorAll('.check').forEach((item,idx)=>{
-                item.removeEventListener('click',()=>{})
-            }) 
+            this.eventreset()
             //ul 내부 데이터 초기화
             this.target.innerHTML=''
-            // list 데이터 가공해야함
-                this.list.forEach((el)=>{
-                let Li:HTMLElement = document.createElement('li')
-                let Input : HTMLInputElement = document.createElement('input')
-                let P : HTMLElement = document.createElement('p')
-                let A : HTMLAnchorElement = document.createElement('a')    
-                Input.type= 'checkbox'
-                Input.className='check'
-                Input.dataset.update=`${el.id}`
-                if(el.isDone){
-                    Input.checked=true
-                    P.className="done"
-                }else{
-                    Input.checked= false
-                    P.className="notdone"
-                }
-                // el.isDone? Input.checked=true : Input.checked= false
-                // el.isDone? P.className="done" : P.className="notdone"
-                A.href='#none'
-                P.innerHTML = el.content
-                A.className="del"
-                A.dataset.delid = `${el.id}`
-                A.innerText="삭제"
-
-                Li.appendChild(Input)
-                Li.appendChild(P)
-                Li.appendChild(A)
-                // 타겟 ul에 집어넣기
-                this.target.append(Li)
-              
-                // this.target.addEventListener('click',(e:MouseEvent)=>{
-                //     console.log(e)
-                //     switch(e.target.className){
-                //     case 'del' : 
-                //     console.log('del')
-                //     this.delTodo(e.target.dataset.delid)
-                //     break;
-                //     case 'check':
-                //         console.log('check')
-                //         this.updateTodo(e.target.dataset.update)
-                //     break;
-                //     }
-                // }) 
-            })
-            document.querySelectorAll('.del').forEach((item:HTMLElement,idx)=>{
-                item.addEventListener('click',()=>{
-                    this.delTodo(item.dataset.delid)
-                })
-            })
-            document.querySelectorAll('.check').forEach((item:HTMLElement)=>{
-                item.addEventListener('click',()=>{
-                    this.updateTodo(item.dataset.update)
-                })
-            })
+            this.elementmaker()
+            this.eventinit()
         } 
         addTodo():void {  
             console.log('addtodo실행',this.input.value)
@@ -131,7 +76,7 @@
             this.list = newlist
             this.getTodo()
         }
-        updateTodo(dataset : string):void {
+        updateTodo(dataset : string, action?:string):void {
             // console.log(dataset,this.list)
             // let newlist = []
 
@@ -147,9 +92,57 @@
             this.getTodo()
 
         }
-        // viewTodo(list:List[],){
-        //     list.map(el=>this.target.append(el))
-        // }
+        elementmaker():void{
+              // list 데이터 가공해야함
+              this.list.forEach((el)=>{
+                let Li:HTMLElement = document.createElement('li')
+                let Input : HTMLInputElement = document.createElement('input')
+                let P : HTMLElement = document.createElement('p')
+                let A : HTMLAnchorElement = document.createElement('a')    
+                Input.type= 'checkbox'
+                Input.className='check'
+                Input.dataset.update=`${el.id}`
+                if(el.isDone){
+                    Input.checked=true
+                    P.className="done"
+                }else{
+                    Input.checked= false
+                    P.className="notdone"
+                }
+                A.href='#none'
+                P.innerHTML = el.content
+                A.className="del"
+                A.dataset.delid = `${el.id}`
+                A.innerText="삭제"
+
+                Li.appendChild(Input)
+                Li.appendChild(P)
+                Li.appendChild(A)
+                // 타겟 ul에 집어넣기
+                this.target.append(Li)
+            })
+        }
+        eventreset():void{
+          // 이벤트 초기화  -> 개선방향 ul에 이벤트를 추가해서 클래스 del인경우 동작하도록 로직 변경하여 메모리 낭비 최적화 가능할것으로 생각된다.
+          document.querySelectorAll('.del').forEach((item,idx)=>{
+            item.removeEventListener('click',()=>{})
+        }) 
+        document.querySelectorAll('.check').forEach((item,idx)=>{
+            item.removeEventListener('click',()=>{})
+        }) 
+        }
+        eventinit():void{
+            document.querySelectorAll('.del').forEach((item:HTMLElement,idx)=>{
+                item.addEventListener('click',()=>{
+                    this.delTodo(item.dataset.delid)
+                })
+            })
+            document.querySelectorAll('.check').forEach((item:HTMLElement)=>{
+                item.addEventListener('click',()=>{
+                    this.updateTodo(item.dataset.update)
+                })
+            })
+        }
     }
 
     const ul = document.querySelector('.todotarget')
@@ -171,6 +164,116 @@
     document.querySelector('.pushbtn').addEventListener('click',function(){
         todo.addTodo()
     })
+    document.querySelector('details').open=true
+interface Cartimplements {
+    Allclear() : void
+}
 
 
+class NewTodolist extends Todolist implements Todomaker,Cartimplements{
+    alldel : Element
+    constructor(target:Element, index:number, list:List[],input:HTMLInputElement,pushbtn:Element,alldel:Element ){
+        super(target,index,list,input,pushbtn)
+        super.getTodo()
+        this.alldel = alldel
+    }
+       elementmaker(): void {
+        this.list.forEach((el)=>{
+            let Li:HTMLElement = document.createElement('li')
+            let Input : HTMLInputElement = document.createElement('input')
+            let P : HTMLElement = document.createElement('p')
+            let A1 : HTMLAnchorElement = document.createElement('a')
+            let A2 : HTMLAnchorElement = document.createElement('a')
+            Input.type= 'checkbox'
+            Input.className='check'
+            Input.dataset.update=`${el.id}`
+            if(el.isDone){
+                Input.checked=true
+                P.className="donecart"
+            }else{
+                Input.checked= false
+                P.className="notdonecart"
+            }
+            A1.href='#none'
+            A2.href='#none'
+            P.innerHTML = el.content
+            A1.className="updatebtn"
+            A2.className="del"
+            A1.dataset.update = `${el.id}`
+            A2.dataset.delid = `${el.id}`
+            A1.innerText="수정"
+            A2.innerText="삭제"
+            Li.appendChild(Input)
+            Li.appendChild(P)
+            Li.appendChild(A1)
+            Li.appendChild(A2)
+            // 타겟 ul에 집어넣기
+            this.target.append(Li)
+        })
+    }
+    Allclear():void {
+        this.list=[]
+        this.getTodo()
+    }
+    updateTodo(dataset: string, action? :string): void {
+        if(action){
+            this.list.forEach((item,index)=>{
+                if(String(item.id) == dataset){
+                    let newtext = prompt(item.content,item.content)
+                    this.list[index].content = newtext
+                }
+            })
+        }else{
+            this.list.forEach((item,index)=>{
+            if(String(item.id) == dataset){
+                this.list[index].isDone = !item.isDone
+            }
+        }
+        
+            )
+        }
+        this.getTodo()
+    }
+    eventinit():void{
+        document.querySelectorAll('.del').forEach((item:HTMLElement,idx)=>{
+            item.addEventListener('click',()=>{
+                this.delTodo(item.dataset.delid)
+            })
+        })
+        document.querySelectorAll('.check,.updatebtn').forEach((item:HTMLElement)=>{
+            if(item.className=='check'){
+                item.addEventListener('click',()=>{
+                    this.updateTodo(item.dataset.update)
+                })
+            }else{
+                item.addEventListener('click',()=>{
+                    this.updateTodo(item.dataset.update,'update')
+                })
+            }
+        })
+    }
+    eventreset():void{
+        // 이벤트 초기화  -> 개선방향 ul에 이벤트를 추가해서 클래스 del인경우 동작하도록 로직 변경하여 메모리 낭비 최적화 가능할것으로 생각된다.
+        document.querySelectorAll('.del').forEach((item,idx)=>{
+          item.removeEventListener('click',()=>{})
+      }) 
+      document.querySelectorAll('.check,.updatebtn').forEach((item,idx)=>{
+          item.removeEventListener('click',()=>{})
+      }) 
+      }
+}
+
+const cartul = document.querySelector('.carttarget')
+const cartinput = document.querySelectorAll('#cart,.cartbtn')[0] as  HTMLInputElement
+const cartbtn:Element= document.querySelectorAll('#cart,.cartbtn')[1]
+const alldel = document.querySelector('.alldel')
+let cart = new NewTodolist(cartul,0,[],cartinput,cartbtn,alldel)
+//초기화와 첫 더미데이터 불러오기
+cart.getTodo()
+document.querySelector('.cartbtn').addEventListener('click',function(){
+    cart.addTodo()
+})
+document.querySelector('.alldel').addEventListener('click',()=>{
+    cart.Allclear()
+})
 
