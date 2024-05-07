@@ -14,7 +14,7 @@ https://steemit.com/hive-101145/@yonggyu01/2gax1v-2km
 
 객체지향 프로그래밍 방식으로 투두리스트 만들어보자 1
 
-https://blurt.blog/sct-kr/@a0988901/4jbnwg-part-1-2km
+https://steemit.com/hive-101145/@yonggyu01/6ogzkw-part-1-2km
 
 객체지향 프로그래밍 방식으로 투두리스트 만들어보자 2
 
